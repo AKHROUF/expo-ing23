@@ -1,6 +1,8 @@
-import { Text, View } from "react-native";
+import { useState } from "react";
+import { Button, Text, View } from "react-native";
 
 export default function Index() {
+  const [x, setX] = useState(0);
   return (
     <View
       style={{
@@ -9,7 +11,8 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text>Vous avez cliqué { x } fois</Text>
+      <Button title="+" onPress={()=>setX(x+1)} />      
     </View>
   );
 }
