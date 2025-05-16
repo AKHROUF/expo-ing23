@@ -1,17 +1,29 @@
 import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, ListRenderItem, Text, View } from "react-native";
 
 export default function Page2() {
-  return (
+  type User = { id: number; name: string; };
+  const [liste, setListe] = useState([])
+  const recupererListe = async()=> {
+    const l = await fetch('https://jsonplaceholder.typicode.com/users')
+    setListe(await l.json())
+  }
+  useEffect(()=>{ recupererListe()}, [])
+  const ligne: ListRenderItem<User> = ({ item }) => (
+    <View style={{ flexDirection: 'row' }}>
+      <Text>{item.id}</Text><Text>{item.name}</Text></View>);
+
+    return (
     <View
       style={{
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
       }}
-    >
-      <Text>PAGE 2</Text>
+    >      
       <Link href="/" >RETOUR</Link>
+      <FlatList data={liste} renderItem={ligne} />
     </View>
   );
 }
