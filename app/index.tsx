@@ -11,10 +11,11 @@ export default function Index() {
         justifyContent: "center",
         alignItems: "center",
       }}
-    >
+      >
       <Text>Vous avez cliqué { x } fois</Text>
       <Button title="+" onPress={()=>setX(x+1)} />
       <Link href="/page2" >PAGE 2</Link>
+      <Link href="/(tab)" >PAGE 3</Link>
     </View>
   );
 }
