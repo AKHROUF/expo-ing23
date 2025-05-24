@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link } from "expo-router";
 import { useState } from "react";
 import { Alert, Button, Text, TextInput, View } from "react-native";
@@ -12,6 +13,8 @@ export default function Index() {
       Alert.alert('Erreur', 'Tous les champs sont obligatoires.');
       return;
     }
+    AsyncStorage.setItem('nom_utilisateur', nom);
+    //AsyncStorage.getItem('nom_utilisateur').then(x=>console.log(x));
     Alert.alert('Formulaire envoyé', `Nom : ${nom}\nEmail : ${email}\nMessage : ${message}`);
   };
   return (
